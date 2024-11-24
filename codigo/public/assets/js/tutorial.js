@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="video-thumbnail">
         <a href="${video.url}" target="_blank"><img src="${thumbnailUrl}" alt="Vídeo" class="img-fluid"></a>
       </div>
-      <a href="${video.url}" target="_blank"><p class="video-title">${video.titulo}</p></a>
+      <a href="${video.url}" class="url-title" target="_blank""><p class="video-title">${video.titulo}</p></a>
       <p class="video-details">${video.descricao}</p>
     `;
 
