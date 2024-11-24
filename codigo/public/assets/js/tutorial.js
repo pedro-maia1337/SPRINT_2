@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const apiUrl = 'http://localhost:3001/tutoriais'; // URL do JSON Server
+  const apiUrl = 'http://localhost:3001/tutoriais'; 
   const videoContainer = document.querySelector('.row');
-  const searchForm = document.querySelector('form'); // Formulário de pesquisa
-  const searchInput = document.getElementById("searchInput"); // Campo de busca
-  const durationButton = document.getElementById("filterByDuration"); // Botão de filtro por duração
-  const allButton = document.getElementById("showAll"); // Botão para exibir todos os vídeos
+  const searchForm = document.querySelector('form'); 
+  const searchInput = document.getElementById("searchInput"); 
+  const durationButton = document.getElementById("filterByDuration"); 
+  const allButton = document.getElementById("showAll"); 
 
   function createVideoCard(video) {
     const colDiv = document.createElement('div');
     colDiv.className = 'col-md-4 mb-4';
 
-    // URL da thumbnail do YouTube
+    
     const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
 
     colDiv.innerHTML = `
@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const videos = await response.json();
 
-      // Limpa o container de vídeos antes de exibir os resultados
+      
       videoContainer.innerHTML = "";
 
       let filteredVideos = videos;
 
-      // Filtrar vídeos por busca
+      
       if (searchQuery) {
         filteredVideos = filteredVideos.filter(video =>
           video.titulo.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -47,12 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       }
 
-      // Filtrar vídeos por maior duração
+      
       if (filterByDuration) {
-        filteredVideos.sort((a, b) => b.duracao - a.duracao); // Ordena por duração decrescente
+        filteredVideos.sort((a, b) => b.duracao - a.duracao); 
       }
 
-      // Renderiza os vídeos filtrados
+      
       filteredVideos.forEach(video => {
         const videoCard = createVideoCard(video);
         videoContainer.appendChild(videoCard);
@@ -66,23 +66,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Evento de submissão do formulário de pesquisa
+  
   searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const searchQuery = searchInput.value.trim();
-    fetchVideos(searchQuery); // Atualiza os vídeos com base na busca
+    fetchVideos(searchQuery); 
   });
 
-  // Evento de clique no botão "Filtrar por Duração"
+ 
   durationButton.addEventListener('click', () => {
-    fetchVideos("", true); // Filtra por maior duração
+    fetchVideos("", true); 
   });
 
-  // Evento de clique no botão "Todos"
+  
   allButton.addEventListener('click', () => {
-    fetchVideos(); // Exibe todos os vídeos sem filtros ou buscas
+    fetchVideos(); 
   });
 
-  // Busca inicial (sem filtro)
+  
   fetchVideos();
 });
