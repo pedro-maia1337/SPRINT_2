@@ -21,7 +21,7 @@ app.get("/tutoriais", (req, res) => {
 });
 
 // Inicializando o servidor
-const PORT = 3000;
+const PORT = 3002;
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
